@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{padding: 0;margin:0;}
+			li{list-style: none;width: 50px;height: 50px;background: pink;border: 4px solid slateblue;position: absolute;}
+			
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<script>
+			var aLi = document.getElementsByTagName('li');
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].onmousedown = function(e){
+					var el = e || event;
+					var l = el.clientX - this.offsetLeft;
+					var t = el.clientY - this.offsetTop;
+					document.onmousemove = function(e){
+						var ev = e || event;
+						this.style.left = ev.clientX - l + "px";
+						this.style.top = ev.clientY - t + "px";
+					}.bind(this)
+					document.onmouseup = function(){
+						this.onmousemove = this.onmouseup = null
+					}
+					
+				}
+			}
+			
+		</script>
+	</body>
+</html>
